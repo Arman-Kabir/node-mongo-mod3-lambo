@@ -23,5 +23,9 @@ module.exports.getAllTools = (req, res, next) => {
 
 module.exports.saveATool = (req, res) => {
     res.send("");
+};
+
+module.exports.getPartlDetail = (req,res)=>{
+    res.send("Tool Detail Found");
 }
 

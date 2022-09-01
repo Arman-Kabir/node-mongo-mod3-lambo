@@ -6,6 +6,8 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 const dbConnect = require('./utils/dbConnect');
 const partsRoutes = require("./routes/v1/parts.route.js");
+const viewCount = require('./controllers/middleware/viewCount');
+const { default: rateLimit } = require('express-rate-limit');
 
 // for stripe
 // const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -15,6 +17,14 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// app.use(viewCount);
+
+
+// Apply the rate limiting middleware to all requests
+// app.use(limiter);
+
+
 
 // dbConnect();
 

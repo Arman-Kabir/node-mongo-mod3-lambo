@@ -1,4 +1,7 @@
 const express = require("express");
+const limiter = require("../../controllers/middleware/limiter");
+// const { limiter } = require("../..");
+const viewCount = require("../../controllers/middleware/viewCount");
 const toolsControllers = require("../../controllers/parts.controller");
 
 const router = express.Router();
@@ -18,6 +21,9 @@ const router = express.Router();
 
 router.route("/")
     .get(toolsControllers.getAllTools)
-    .post(toolsControllers.saveATool)
+    .post(toolsControllers.saveATool);
+
+router.route("/:id")
+    .get(viewCount, limiter, toolsControllers.getPartlDetail);
 
 module.exports = router;
