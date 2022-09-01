@@ -1,5 +1,5 @@
 
-const parts = [
+let parts = [
     { id: 1, name: "Hammer1" },
     { id: 2, name: "Hammer2" },
     { id: 3, name: "Hammer3" }
@@ -44,5 +44,24 @@ module.exports.getPartDetail = (req, res) => {
     // const filter = { _id: id };
     const foundTool = parts.find(part => part.id == id);
     res.send(foundTool);
+};
+
+module.exports.updatePart = (req, res) => {
+    // const newData = req.body;
+    const { id } = req.params;
+    const filter = { _id: id };
+
+    const newData = parts.find(part => part.id === Number(id));
+    newData.id = id;
+    newData.name = req.body.name;
+    res.send(newData);
+}
+
+module.exports.deletePart = (req, res) => {
+    const { id } = req.params;
+    const filter = { _id: id };
+
+    parts = parts.filter(part => part.id !== Number(id));
+    res.send(parts);
 }
 

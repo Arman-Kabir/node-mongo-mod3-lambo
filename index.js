@@ -17,6 +17,8 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
+app.set("view engine","ejs");
 // app.use(express.text());
 
 // app.use(viewCount);
@@ -324,7 +326,14 @@ async function run() {
 
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    // res.send('Hello World!')
+    res.sendFile(__dirname + "/public/test.html");
+    res.render("home.ejs",{
+        id:5,
+        user:{
+            name: "test"
+        }
+    });
 })
 
 app.all("*", (req, res) => {
