@@ -24,6 +24,6 @@ router.route("/")
     .post(toolsControllers.saveATool);
 
 router.route("/:id")
-    .get(viewCount, limiter, toolsControllers.getPartlDetail);
+    .get(viewCount, limiter, toolsControllers.getPartDetail);
 
 module.exports = router;
